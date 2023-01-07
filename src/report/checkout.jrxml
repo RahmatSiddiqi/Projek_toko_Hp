@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CheckOut" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_penjualan" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT * FROM tb_penjualan, tb_pembeli, tb_pegawai, tb_barang_keluar, tb_barang WHERE tb_penjualan.id_penjualan = tb_barang_keluar.id_penjualan AND tb_penjualan.id_pembeli = tb_pembeli.id_pembeli AND tb_penjualan.id_pegawai = tb_pegawai.id_pegawai AND tb_barang.id_barang = tb_barang_keluar.id_barang AND tb_penjualan.id_penjualan = $P{id_penjualan};]]>
+	</queryString>
+	<field name="id_penjualan" class="java.lang.Integer"/>
+	<field name="nama_pegawai" class="java.lang.String"/>
+	<field name="tanggal" class="java.sql.Date"/>
+	<field name="id_pembeli" class="java.lang.Integer"/>
+	<field name="id_pegawai" class="java.lang.Integer"/>
+	<field name="nama" class="java.lang.String"/>
+	<field name="alamat" class="java.lang.String"/>
+	<field name="no hp" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="nik" class="java.lang.String"/>
+	<field name="tempat_lahir" class="java.lang.String"/>
+	<field name="tanggal_lahir" class="java.sql.Date"/>
+	<field name="kewarganegaraan" class="java.lang.String"/>
+	<field name="jenis_kelamin" class="java.lang.String"/>
+	<field name="agama" class="java.lang.String"/>
+	<field name="gaji" class="java.lang.Integer"/>
+	<field name="status_pegawai" class="java.lang.String"/>
+	<field name="foto" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="id_barang" class="java.lang.Integer"/>
+	<field name="jumlah_keluar" class="java.lang.Integer"/>
+	<field name="tanggal_keluar" class="java.sql.Date"/>
+	<field name="sisa_barang" class="java.lang.Integer"/>
+	<field name="status_keluar" class="java.lang.String"/>
+	<field name="nama_barang" class="java.lang.String"/>
+	<field name="merk_barang" class="java.lang.String"/>
+	<field name="tipe_barang" class="java.lang.String"/>
+	<field name="ram" class="java.lang.String"/>
+	<field name="harga" class="java.lang.Integer"/>
+	<field name="harga_jual" class="java.lang.Integer"/>
+	<field name="jumlah" class="java.lang.Integer"/>
+	<field name="keterangan" class="java.lang.String"/>
+	<field name="kategori" class="java.lang.String"/>
+	<variable name="No" class="java.lang.Integer" incrementType="Column">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="Grand_Total" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{jumlah_keluar} * $F{harga_jual}]]></variableExpression>
+	</variable>
+	<group name="Report_Penjualan_group">
+		<groupExpression><![CDATA[$F{id_penjualan}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<frame>
+					<reportElement x="7" y="1" width="542" height="20"/>
+					<box>
+						<leftPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+						<rightPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+					</box>
+				</frame>
+				<staticText>
+					<reportElement x="227" y="1" width="100" height="20"/>
+					<box bottomPadding="0">
+						<pen lineWidth="0.5" lineStyle="Solid"/>
+						<topPen lineWidth="0.5" lineStyle="Solid"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[   HARGA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="42" y="1" width="185" height="20"/>
+					<box bottomPadding="0">
+						<pen lineWidth="0.5" lineStyle="Solid"/>
+						<topPen lineWidth="0.5" lineStyle="Solid"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[  NAMA BARANG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="427" y="1" width="117" height="20"/>
+					<box bottomPadding="0">
+						<pen lineWidth="0.5" lineStyle="Solid"/>
+						<topPen lineWidth="0.5" lineStyle="Solid"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[   TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="13" y="1" width="29" height="20"/>
+					<box bottomPadding="0">
+						<pen lineWidth="0.5" lineStyle="Solid"/>
+						<topPen lineWidth="0.5" lineStyle="Solid"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[NO.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="327" y="1" width="100" height="20"/>
+					<box bottomPadding="0">
+						<pen lineWidth="0.5" lineStyle="Solid"/>
+						<topPen lineWidth="0.5" lineStyle="Solid"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[   QTY]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="92">
+				<frame>
+					<reportElement x="7" y="0" width="542" height="92"/>
+					<box>
+						<leftPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+						<bottomPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+						<rightPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+					</box>
+					<staticText>
+						<reportElement x="375" y="59" width="47" height="20"/>
+						<box>
+							<bottomPen lineWidth="1.5"/>
+						</box>
+						<textElement textAlignment="Right" verticalAlignment="Middle">
+							<font size="12" isBold="true" isUnderline="false"/>
+						</textElement>
+						<text><![CDATA[No HP   ]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="422" y="59" width="100" height="20"/>
+						<box>
+							<bottomPen lineWidth="1.5"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font size="12" isBold="true" isUnderline="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[" : " + $F{no hp}]]></textFieldExpression>
+					</textField>
+					<textField pattern="   Rp #,##0">
+						<reportElement x="420" y="2" width="117" height="20"/>
+						<box>
+							<pen lineWidth="1.0" lineStyle="Double"/>
+							<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#666666"/>
+							<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#666666"/>
+							<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#666666"/>
+							<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#666666"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font size="12" isBold="true" isUnderline="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$V{Grand_Total}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="6" y="2" width="414" height="20" backcolor="#333333"/>
+						<box>
+							<pen lineWidth="1.0" lineStyle="Double"/>
+							<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#666666"/>
+							<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#666666"/>
+							<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#666666"/>
+							<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#666666"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="14" isBold="true"/>
+						</textElement>
+						<text><![CDATA[TOTAL]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="6" y="39" width="358" height="40"/>
+						<box>
+							<bottomPen lineWidth="1.5"/>
+						</box>
+						<textElement verticalAlignment="Bottom">
+							<font size="12" isBold="true" isUnderline="false"/>
+						</textElement>
+						<text><![CDATA[  NOTE: Garansi Toko Hanya Berlaku 7 Hari Setelah Pembelian]]></text>
+					</staticText>
+				</frame>
+				<textField>
+					<reportElement x="429" y="39" width="100" height="20"/>
+					<box>
+						<bottomPen lineWidth="1.5"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true" isUnderline="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" : " + $F{nama}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="382" y="39" width="47" height="20"/>
+					<box>
+						<bottomPen lineWidth="1.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12" isBold="true" isUnderline="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Pembeli]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="103" splitType="Stretch">
+			<frame>
+				<reportElement x="7" y="51" width="542" height="52"/>
+				<box>
+					<leftPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+					<rightPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+				</box>
+			</frame>
+			<staticText>
+				<reportElement x="7" y="10" width="542" height="41"/>
+				<box topPadding="4" leftPadding="3" bottomPadding="5" rightPadding="3">
+					<pen lineWidth="0.75" lineStyle="Double" lineColor="#33CCFF"/>
+					<topPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+					<leftPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+					<bottomPen lineWidth="0.0" lineStyle="Double" lineColor="#33CCFF"/>
+					<rightPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOKO HP BOY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="73" width="378" height="30"/>
+				<box bottomPadding="2">
+					<bottomPen lineWidth="2.0" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Struk Pembelian Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="51" width="555" height="22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Jl. Perniagaan No.99 Sp.keren. -HP: 080808080808-]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="80" splitType="Stretch">
+			<frame>
+				<reportElement x="7" y="0" width="542" height="80"/>
+				<box>
+					<leftPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+					<rightPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+				</box>
+			</frame>
+			<textField>
+				<reportElement x="98" y="32" width="111" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": " + $F{nama_pegawai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="12" width="111" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": " + $F{id_penjualan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="12" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": " + $F{tanggal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="12" width="85" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Struk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="32" width="85" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Kasir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="358" y="12" width="67" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21">
+			<frame>
+				<reportElement x="7" y="0" width="542" height="21"/>
+				<box>
+					<leftPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+					<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#66CCFF"/>
+					<rightPen lineWidth="1.5" lineStyle="Dashed" lineColor="#66CCFF"/>
+				</box>
+				<textField>
+					<reportElement x="35" y="0" width="185" height="21"/>
+					<box bottomPadding="0">
+						<pen lineWidth="0.5" lineStyle="Solid"/>
+						<topPen lineWidth="0.5" lineStyle="Solid"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA["  " + $F{nama_barang}]]></textFieldExpression>
+				</textField>
+				<textField pattern="   Rp #,##0">
+					<reportElement x="220" y="0" width="100" height="21"/>
+					<box bottomPadding="0">
+						<pen lineWidth="0.5" lineStyle="Solid"/>
+						<topPen lineWidth="0.5" lineStyle="Solid"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{harga_jual}]]></textFieldExpression>
+				</textField>
+				<textField pattern="   Rp #,##0">
+					<reportElement x="420" y="0" width="117" height="21"/>
+					<box bottomPadding="0">
+						<pen lineWidth="0.5" lineStyle="Solid"/>
+						<topPen lineWidth="0.5" lineStyle="Solid"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{jumlah_keluar} * $F{harga_jual}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6" y="0" width="29" height="21"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="320" y="0" width="100" height="21"/>
+					<box bottomPadding="0">
+						<pen lineWidth="0.5" lineStyle="Solid"/>
+						<topPen lineWidth="0.5" lineStyle="Solid"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA["   " + $F{jumlah_keluar} + " Unit"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>
